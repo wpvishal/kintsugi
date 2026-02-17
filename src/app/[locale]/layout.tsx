@@ -42,7 +42,7 @@ export default async function LocaleLayout({
                         <div className="flex-1 border-0 border-primary/20 relative rounded-sm overflow-visible">
 
                             {/* Golden Border Container */}
-                            <div className="absolute inset-0 pointer-events-none">
+                            <div className="absolute inset-0 pointer-events-none z-10">
                                 {/* Irregular Top Border */}
                                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
                                 {/* Irregular Bottom Border */}
@@ -63,7 +63,7 @@ export default async function LocaleLayout({
                                 </div>
                             </div>
 
-                            <div className="h-full relative overflow-auto custom-scrollbar">
+                            <div className="relative min-h-screen">
                                 <PageTransition>
                                     <LaunchLock>
                                         {children}

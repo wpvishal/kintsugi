@@ -1,13 +1,13 @@
 {
     "home": {
         "heroTitle": "Rebirth of the",
-        "heroTitleAccent": "Broken",
         "heroSubtitle": "Kintsugi Protocol uses AI to restore abandoned Solana projects through the art of algorithmic repair.",
         "ctaLaunch": "Launch App",
         "ctaScroll": "Read the Scroll",
-        "statsTVR": "Total Value Restored",
-        "statsReborn": "Projects Reborn",
-        "statsBurned": "$GOLD Burned"
+        "statsTVR": "Restoration Target",
+        "statsReborn": "Phase 1: Waitlist & Verification",
+        "statsBurned": "Code Scanning",
+        "statsSupply": "Alpha Testing with Gemini 3"
     },
     "philosophy": {
         "wabiSabiTitle": "Wabi-Sabi",
@@ -26,7 +26,7 @@
         "hall": "Restoration Hall",
         "vote": "Governance",
         "vault": "Vault",
-        "connect": "Connect Soul",
+        "connect": "Connect Wallet",
         "lockedTooltip": "Power currently being restored. Join the waitlist for early access."
     },
     "footer": {
@@ -50,8 +50,8 @@
         "riskDisclosure": "Risk Disclosure"
     },
     "lock": {
-        "title": "The Vessel is being mended.",
-        "subtitle": "Connect your Soul to be notified of the Rebirth.",
+        "title": "Phase 1: Systems Initializing.",
+        "subtitle": "Join the Waitlist for Access.",
         "cta": "Request Access",
         "buttonLocked": "Locked until Launch"
     },
@@ -63,9 +63,13 @@
         "mobileHelper": "Phantom Mobile Optimized"
     },
     "bento": {
-        "ecosystemTitle": "The Ecosystem",
+        "ecosystemTitle": "Three Pillars of the Path",
         "senseiTitle": "The Sensei",
-        "senseiDesc": "AI-powered contract analysis. Detect cracks in the code before they break.",
+        "senseiDesc": "Transparent scanning of Solana contracts via Gemini 3 AI.",
+        "assemblyTitle": "The Assembly",
+        "assemblyDesc": "Community-led voting on which projects deserve the Golden Repair.",
+        "treasuryTitle": "The Treasury",
+        "treasuryDesc": "A dedicated fund to provide liquidity to mended projects.",
         "scanInit": "> Initiating scan...",
         "scanAddress": "> Address: 4xS2...9aB1",
         "scanAlert": "> Alert: Mutable Metadata",
@@ -77,8 +81,7 @@
         "statusPolished": "Polished",
         "statusFused": "Fused",
         "statusGoldLeafed": "Gold-Leafed",
-        "treasuryTitle": "The Golden Treasury",
-        "treasuryTVR": "Total Value Restored",
+        "treasuryTVR": "Initialized Fund",
         "communityTitle": "Join the Monastery",
         "communityBtn": "Enter Discord",
         "securityTitle": "Verified Security",

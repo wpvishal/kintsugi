@@ -39,7 +39,7 @@ export default function LaunchLock({ children }: { children: React.ReactNode }) 
     return (
         <div className="relative w-full h-full min-h-screen">
             {/* Blurred Content (Non-interactive) */}
-            <div className="absolute inset-0 filter blur-xl grayscale opacity-20 pointer-events-none select-none overflow-hidden bg-[#121212]">
+            <div className="absolute inset-0 filter blur-2xl grayscale opacity-20 pointer-events-none select-none overflow-hidden bg-[#121212]">
                 {children}
             </div>
 

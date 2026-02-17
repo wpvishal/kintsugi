@@ -5,9 +5,10 @@
         "heroSubtitle": "金継ぎプロトコルは、AIの力で放棄されたSolanaプロジェクトを「修復の技」で蘇らせます。",
         "ctaLaunch": "アプリを起動",
         "ctaScroll": "巻物を読む",
-        "statsTVR": "復元された総価値",
-        "statsReborn": "再生プロジェクト数",
-        "statsBurned": "$GOLD 焼却量"
+        "statsTVR": "修復目標",
+        "statsReborn": "第一段階：検証と待機リスト",
+        "statsBurned": "コードスキャン",
+        "statsSupply": "Gemini 3によるアルファテスト中"
     },
     "philosophy": {
         "wabiSabiTitle": "侘寂",
@@ -26,7 +27,7 @@
         "hall": "復元の間",
         "vote": "評定",
         "vault": "金庫",
-        "connect": "魂を接続",
+        "connect": "Connect Wallet",
         "lockedTooltip": "機能は現在修復中です。ウェイティングリストに参加して早期アクセス権を獲得しましょう。"
     },
     "footer": {
@@ -50,8 +51,8 @@
         "riskDisclosure": "リスク開示"
     },
     "lock": {
-        "title": "器は修復中にございます",
-        "subtitle": "再生の報せを受け取るには、魂を接続してください。",
+        "title": "第一段階：システム初期化中",
+        "subtitle": "アクセス権を得るためにウェイティングリストに参加してください。",
         "cta": "参加を申請する",
         "buttonLocked": "起動まで封印中"
     },
@@ -63,9 +64,14 @@
         "mobileHelper": "Phantom モバイル対応済"
     },
     "bento": {
-        "ecosystemTitle": "生態系",
-        "senseiTitle": "仙師",
-        "senseiDesc": "AIによるスマートコントラクト分析。コードの亀裂を、壊れる前に検知する。",
+        "ecosystemTitle": "道の三本柱",
+        "senseiTitle": "仙師 (The Sensei)",
+        "senseiDesc": "Gemini 3 AIによるSolanaコントラクトの透明な監査。",
+        "assemblyTitle": "集会 (The Assembly)",
+        "assemblyDesc": "どのプロジェクトが「黄金の修復」に値するかを決めるコミュニティ投票。",
+        "treasuryTitle": "金庫 (The Treasury)",
+        "treasuryDesc": "修復されたプロジェクトに流動性を提供する専用基金。",
+        "treasuryTVR": "初期基金",
         "scanInit": "> 検査開始…",
         "scanAddress": "> アドレス: 4xS2...9aB1",
         "scanAlert": "> 警告: ミュータブルメタデータ",
@@ -77,8 +83,6 @@
         "statusPolished": "研磨済",
         "statusFused": "融合済",
         "statusGoldLeafed": "金箔仕上",
-        "treasuryTitle": "黄金の金庫",
-        "treasuryTVR": "復元された総価値",
         "communityTitle": "僧院に加わる",
         "communityBtn": "Discordに参加",
         "securityTitle": "検証済セキュリティ",

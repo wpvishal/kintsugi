@@ -32,7 +32,7 @@ export default function WalletConnectBtn() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
             }}>
-                Connect Soul
+                Connect Wallet
             </WalletMultiButton>
         );
     }

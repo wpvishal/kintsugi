@@ -19,7 +19,7 @@ const Counter = ({ from, to }: { from: number; to: number }) => {
   const inView = useInView(nodeRef, { once: true });
 
   useEffect(() => {
-    if (!process.browser) return;
+    if (typeof window === 'undefined') return;
 
     const element = nodeRef.current;
     if (!element || !inView) return;
@@ -91,9 +91,9 @@ export default function Home() {
         transition={{ duration: 1, ease: "easeOut" }}
         className="space-y-6 max-w-4xl relative z-10 pt-20"
       >
-        <h1 className="text-6xl sm:text-8xl font-serif font-medium tracking-tight text-foreground">
+        <h1 className="text-6xl sm:text-8xl font-serif font-medium leading-[1.1] tracking-tight text-foreground">
           {t('heroTitle')}
-          <span className="block text-primary italic mt-2 animate-golden-glow">{t('heroTitleAccent')}</span>
+          <span className="block text-primary italic md:mt-2">{t('heroTitleAccent')}</span>
         </h1>
 
         <p className="text-xl sm:text-2xl text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed">
@@ -118,45 +118,7 @@ export default function Home() {
       {/* Live Ticker */}
       <Ticker />
 
-      {/* App Preview Gallery */}
-      <section className="w-full max-w-7xl mx-auto py-24 px-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl font-serif text-primary mb-4">The Restored Vessel</h2>
-          <p className="text-muted-foreground">A glimpse into the mended future.</p>
-        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { src: "/images/screenshot-scanner.png", label: "The Sensei" },
-            { src: "/images/screenshot-vault.png", label: "The Vault" },
-            { src: "/images/screenshot-hall.png", label: "Restoration Hall" }
-          ].map((img, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2 }}
-              className="group relative aspect-[4/3] rounded-lg overflow-hidden border border-primary/20 bg-background/50 backdrop-blur-sm shadow-2xl"
-            >
-              <Image
-                src={img.src}
-                alt={img.label}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4">
-                <h3 className="text-xl font-serif text-[#D4AF37]">{img.label}</h3>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
 
       {/* Stats Ribbon */}
       <section className="w-full max-w-6xl mx-auto py-32 px-4">
@@ -167,7 +129,7 @@ export default function Home() {
               <span className="text-xs uppercase tracking-widest font-bold">{t('statsTVR')}</span>
             </div>
             <div className="text-4xl sm:text-5xl font-serif text-primary">
-              $<Counter from={0} to={12450000} />
+              $<Counter from={0} to={100000} />+
             </div>
           </div>
 
@@ -177,7 +139,7 @@ export default function Home() {
               <span className="text-xs uppercase tracking-widest font-bold">{t('statsReborn')}</span>
             </div>
             <div className="text-4xl sm:text-5xl font-serif text-primary">
-              <Counter from={0} to={42} />
+              <Counter from={0} to={25} />
             </div>
           </div>
 
@@ -186,8 +148,8 @@ export default function Home() {
               <Flame className="w-5 h-5" />
               <span className="text-xs uppercase tracking-widest font-bold">{t('statsBurned')}</span>
             </div>
-            <div className="text-4xl sm:text-5xl font-serif text-primary">
-              <Counter from={0} to={850000} />
+            <div className="text-lg font-serif text-primary mt-4">
+              {t('statsSupply')}
             </div>
           </div>
         </div>

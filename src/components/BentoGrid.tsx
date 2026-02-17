@@ -9,10 +9,7 @@ export default function BentoGrid() {
     const t = useTranslations("bento");
 
     const recentRepairs = [
-        { name: "$BONK", status: t("statusRestored") },
-        { name: "$WIF", status: t("statusPolished") },
-        { name: "$SAMO", status: t("statusFused") },
-        { name: "$POPCAT", status: t("statusGoldLeafed") },
+        // Placeholder for Phase 1 - No live data yet
     ];
 
     return (
@@ -26,116 +23,73 @@ export default function BentoGrid() {
                 {t("ecosystemTitle")}
             </motion.h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                {/* Card 1: The Sensei (Tall) */}
+                {/* Pillar 1: The Sensei */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="md:row-span-2 relative group overflow-hidden rounded-sm border border-primary/20 bg-card/50 backdrop-blur-sm p-6 flex flex-col justify-between hover:border-primary/50 transition-colors"
+                    className="relative group overflow-hidden rounded-sm border border-primary/20 bg-card/50 backdrop-blur-sm p-8 flex flex-col hover:border-primary/50 transition-colors min-h-[300px]"
                 >
                     <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div>
-                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4 text-primary">
-                            <Search className="w-5 h-5" />
-                        </div>
-                        <h3 className="text-xl font-serif text-foreground mb-2">{t("senseiTitle")}</h3>
-                        <p className="text-sm text-muted-foreground">{t("senseiDesc")}</p>
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary">
+                        <Search className="w-6 h-6" />
                     </div>
+                    <h3 className="text-2xl font-serif text-foreground mb-3">{t("senseiTitle")}</h3>
+                    <p className="text-muted-foreground leading-relaxed flex-1">{t("senseiDesc")}</p>
 
-                    {/* Mock Scanner Preview */}
-                    <div className="mt-6 w-full h-40 bg-black/40 rounded border border-primary/10 p-3 font-mono text-[10px] text-muted-foreground overflow-hidden relative">
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10" />
-                        <p className="text-primary/70">{t("scanInit")}</p>
-                        <p>{t("scanAddress")}</p>
-                        <p className="text-red-400">{t("scanAlert")}</p>
-                        <p>{t("scanLiquidity")}</p>
-                        <p className="text-green-400">{t("scanLocked")}</p>
-                        <p>{t("scanCalc")}</p>
-                        <div className="mt-2 text-2xl font-bold text-primary animate-pulse">88/100</div>
+                    {/* Decorative Code Snippet */}
+                    <div className="mt-6 border-t border-primary/10 pt-4 font-mono text-xs text-primary/60">
+                        {t("scanInit")}
                     </div>
 
                     <Link href="/scanner" className="absolute inset-0 z-20" />
                 </motion.div>
 
-                {/* Card 2: Live Feed (Small) */}
+                {/* Pillar 2: The Assembly */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
-                    className="relative overflow-hidden rounded-sm border border-primary/20 bg-card/50 backdrop-blur-sm p-6 flex flex-col hover:border-primary/50 transition-colors"
-                >
-                    <div className="flex items-center gap-3 mb-4 text-primary">
-                        <Activity className="w-5 h-5" />
-                        <h3 className="text-sm font-serif uppercase tracking-widest text-muted-foreground">{t("recentRepairs")}</h3>
-                    </div>
-                    <div className="space-y-3 overflow-hidden mask-gradient-b">
-                        {recentRepairs.map((token, i) => (
-                            <div key={i} className="flex justify-between items-center text-xs font-mono">
-                                <span className="text-foreground/80 text-nowrap">{token.name}</span>
-                                <div className="h-[1px] flex-1 mx-2 bg-primary/10" />
-                                <span className="text-primary">{token.status}</span>
-                            </div>
-                        ))}
-                    </div>
-                </motion.div>
-
-                {/* Card 3: The Treasury (Wide) */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
-                    className="md:col-span-2 relative group overflow-hidden rounded-sm border border-primary/20 bg-card/50 backdrop-blur-sm p-6 flex flex-col justify-center items-center text-center hover:border-primary/50 transition-colors"
+                    className="relative group overflow-hidden rounded-sm border border-primary/20 bg-card/50 backdrop-blur-sm p-8 flex flex-col hover:border-primary/50 transition-colors min-h-[300px]"
                 >
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 text-primary group-hover:scale-110 transition-transform duration-500">
-                        <Coins className="w-8 h-8" />
+                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/washi.png')] opacity-5" />
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary">
+                        <Users className="w-6 h-6" />
                     </div>
-                    <h3 className="text-2xl font-serif text-foreground mb-1">{t("treasuryTitle")}</h3>
-                    <div className="text-4xl md:text-5xl font-mono text-primary font-bold tracking-tighter my-2">
-                        $4,821,902
-                    </div>
-                    <p className="text-sm text-muted-foreground uppercase tracking-widest">{t("treasuryTVR")}</p>
+                    <h3 className="text-2xl font-serif text-foreground mb-3">{t("assemblyTitle")}</h3>
+                    <p className="text-muted-foreground leading-relaxed flex-1">{t("assemblyDesc")}</p>
 
-                    <Link href="/vault" className="absolute inset-0 z-20" />
+                    <div className="mt-6 border-t border-primary/10 pt-4 font-serif text-xs text-primary/60 italic">
+                        VOX POPULI, VOX DEI
+                    </div>
+
+                    <Link href="/vote" className="absolute inset-0 z-20" />
                 </motion.div>
 
-                {/* Card 4: Community (Square) */}
+                {/* Pillar 3: The Treasury */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                    className="relative group overflow-hidden rounded-sm border border-primary/20 bg-card/50 backdrop-blur-sm p-6 flex flex-col justify-center items-center text-center hover:border-primary/50 transition-colors cursor-pointer"
-                >
-                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/washi.png')] opacity-10" />
-                    <Users className="w-8 h-8 text-primary mb-4" />
-                    <h3 className="text-lg font-serif text-foreground mb-4">{t("communityTitle")}</h3>
-                    <a
-                        href="https://discord.gg"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-6 py-2 border border-primary text-primary text-xs uppercase tracking-widest hover:bg-primary hover:text-black transition-colors z-10"
-                    >
-                        {t("communityBtn")}
-                    </a>
-                </motion.div>
-
-                {/* Card 5: Security (Small) */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 }}
-                    className="relative overflow-hidden rounded-sm border border-primary/20 bg-card/50 backdrop-blur-sm p-6 flex flex-col justify-center items-center text-center hover:border-primary/50 transition-colors"
+                    className="relative group overflow-hidden rounded-sm border border-primary/20 bg-card/50 backdrop-blur-sm p-8 flex flex-col hover:border-primary/50 transition-colors min-h-[300px]"
                 >
-                    <Shield className="w-10 h-10 text-primary mb-4" />
-                    <h3 className="text-sm font-serif text-foreground">{t("securityTitle")}</h3>
-                    <p className="text-xs text-muted-foreground mt-2">{t("securityDesc")}</p>
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary">
+                        <Coins className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-2xl font-serif text-foreground mb-3">{t("treasuryTitle")}</h3>
+                    <p className="text-muted-foreground leading-relaxed flex-1">{t("treasuryDesc")}</p>
+
+                    <div className="mt-6 border-t border-primary/10 pt-4 flex justify-between items-center">
+                        <span className="text-xs uppercase tracking-widest text-primary/60">{t("treasuryTVR")}</span>
+                        <span className="font-mono text-primary font-bold">$100,000+</span>
+                    </div>
+
+                    <Link href="/vault" className="absolute inset-0 z-20" />
                 </motion.div>
 
             </div>
