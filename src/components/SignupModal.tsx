@@ -2,7 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Mail, ArrowRight, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface SignupModalProps {
     isOpen: boolean;
@@ -22,26 +23,31 @@ export default function SignupModal({ isOpen, onClose }: SignupModalProps) {
         setTimeout(onClose, 2000);
     };
 
-    return (
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
+
+    return createPortal(
         <AnimatePresence>
             {isOpen && (
-                <>
-                    {/* Backdrop */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={onClose}
+                    className={`fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}
+                >
+                    {/* Modal Content */}
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={onClose}
-                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] flex items-center justify-center p-4"
-                    />
-
-                    {/* Modal */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        className="fixed z-[70] w-full max-w-md bg-[#121212] border border-[#D4AF37]/30 rounded-lg shadow-2xl overflow-hidden"
-                        style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} // Centering fallback
+                        initial={{ scale: 0.95, y: 20 }}
+                        animate={{ scale: 1, y: 0 }}
+                        exit={{ scale: 0.95, y: 20 }}
+                        onClick={(e) => e.stopPropagation()}
+                        className="relative z-10 w-full max-w-md max-h-[90vh] overflow-y-auto bg-[#121212] border border-[#D4AF37]/30 rounded-lg shadow-2xl"
                     >
                         <div className="relative p-8">
                             <button
@@ -98,8 +104,9 @@ export default function SignupModal({ isOpen, onClose }: SignupModalProps) {
                         {/* Footer Stripe */}
                         <div className="h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent opacity-50" />
                     </motion.div>
-                </>
+                </motion.div>
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
     );
 }

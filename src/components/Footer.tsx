@@ -6,9 +6,15 @@ import Link from "next/link";
 import { Github, Twitter, Disc, ArrowUpRight, CheckCircle2, Circle } from "lucide-react";
 import TransparencyReport from "./TransparencyReport";
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
     const t = useTranslations("footer");
+    const pathname = usePathname();
+
+    // Hide on Crucible page
+    const routeWithoutLocale = pathname.replace(/^\/(ja|en)/, "") || "/";
+    if (routeWithoutLocale === "/crucible") return null;
 
     return (
         <footer className="w-full border-t border-[#D4AF37]/20 bg-[#121212] pt-16 pb-8 relative overflow-hidden">
@@ -57,7 +63,7 @@ export default function Footer() {
 
                     {/* Social Icons */}
                     <div className="flex gap-4">
-                        <SocialIcon href="https://twitter.com" icon={<Twitter className="w-5 h-5" />} label="X (Twitter)" />
+                        <SocialIcon href="https://x.com/Kintsugionsol" icon={<Twitter className="w-5 h-5" />} label="X (Twitter)" />
                         <SocialIcon href="https://discord.com" icon={<Disc className="w-5 h-5" />} label="Discord" />
                         <SocialIcon href="https://github.com/Start-With-A-Name/Kintsugi" icon={<Github className="w-5 h-5" />} label="GitHub" />
                     </div>
@@ -75,7 +81,7 @@ export default function Footer() {
                 {/* Global Status Indicator */}
                 <div className="flex items-center gap-4 text-[#D4AF37]/70 font-mono tracking-wider bg-[#D4AF37]/5 px-4 py-2 rounded-full border border-[#D4AF37]/10">
                     <span className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                        <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
                         {t("statusSensei")}
                     </span>
                     <span className="w-1 h-1 rounded-full bg-[#D4AF37]/30" />

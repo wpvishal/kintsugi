@@ -12,4 +12,5 @@ export const PUBLIC_ROUTES: string[] = [
     "/scroll",  // Whitepaper
     "/terms",   // Terms of Service
     "/privacy", // Privacy Policy
+    "/crucible", // The Crucible Sub-Project
 ];

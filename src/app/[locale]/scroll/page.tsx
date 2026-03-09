@@ -104,6 +104,15 @@ export default function WhitepaperPage() {
                 {/* Main Content */}
                 <main className="flex-1 max-w-4xl mx-auto px-6 py-24 space-y-32">
 
+                    {/* Header & Disclaimer */}
+                    <div className="text-center space-y-6 mb-16">
+                        <h1 className="text-5xl md:text-6xl font-serif text-[#1a1814]">{t("headerTitle")}</h1>
+                        <p className="text-xl text-primary font-serif italic">{t("headerSubtitle")}</p>
+                        <p className="text-sm text-muted-foreground italic max-w-2xl mx-auto border-t border-b border-primary/20 py-4 mt-8">
+                            {t("disclaimer")}
+                        </p>
+                    </div>
+
                     {/* Philosophy Section */}
                     <section id="philosophy" className="scroll-mt-32 space-y-8">
                         <MendingContainer>

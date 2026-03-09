@@ -15,7 +15,13 @@ export default function Navbar() {
     const pathname = usePathname();
     const t = useTranslations("nav");
 
+    // Hide on Crucible page
+    const routeWithoutLocale = pathname.replace(/^\/(ja|en)/, "") || "/";
+    if (routeWithoutLocale === "/crucible") return null;
+
     const navLinks = [
+        { name: t("home"), href: "/" },
+        { name: t("crucible"), href: "/crucible" },
         { name: t("whitepaper"), href: "/scroll" },
         { name: t("scanner"), href: "/scanner" },
         { name: t("hall"), href: "/hall" },

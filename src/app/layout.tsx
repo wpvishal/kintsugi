@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Shippori_Mincho } from "next/font/google";
 import "./globals.css";
+import AppWalletProvider from "@/components/AppWalletProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -51,7 +52,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${shippori.variable} antialiased min-h-screen flex flex-col`}
       >
-        {children}
+        <AppWalletProvider>
+          {children}
+        </AppWalletProvider>
       </body>
     </html>
   );
