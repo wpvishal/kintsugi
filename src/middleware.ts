@@ -8,7 +8,7 @@ export default function middleware(req: NextRequest) {
     const url = req.nextUrl;
     const hostname = req.headers.get("host") || "";
 
-    // Subdomain configuration
+    // Subdomain configuration for kintsugi-web project
     const subHost = "crucible.kintsugi.asia";
     const devSubHost = "crucible.localhost:3000";
 
