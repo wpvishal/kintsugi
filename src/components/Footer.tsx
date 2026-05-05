@@ -1,10 +1,8 @@
 "use client";
 
 import React from "react";
-
 import Link from "next/link";
-import { Github, Twitter, Disc, ArrowUpRight, CheckCircle2, Circle } from "lucide-react";
-import TransparencyReport from "./TransparencyReport";
+import { Twitter, ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 
@@ -12,107 +10,34 @@ export default function Footer() {
     const t = useTranslations("footer");
     const pathname = usePathname();
 
-    // Hide on Crucible page
     const routeWithoutLocale = pathname.replace(/^\/(ja|en)/, "") || "/";
-    if (routeWithoutLocale === "/crucible") return null;
+    if (routeWithoutLocale === "/manifesto") return null;
 
     return (
-        <footer className="w-full border-t border-[#D4AF37]/20 bg-[#121212] pt-16 pb-8 relative overflow-hidden">
-            {/* Background Texture */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/washi.png')] mix-blend-overlay" />
-
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
-
-                {/* Ecosystem Links */}
-                <div className="space-y-6">
-                    <h3 className="font-serif text-lg text-[#D4AF37]">{t("ecosystem")}</h3>
-                    <ul className="space-y-3 text-sm text-[#D4AF37]/80">
-                        <li><Link href="/scanner" className="hover:text-[#D4AF37] hover:pl-1 transition-all">{t("senseiScanner")}</Link></li>
-                        <li><Link href="/hall" className="hover:text-[#D4AF37] hover:pl-1 transition-all">{t("restorationHall")}</Link></li>
-                        <li><Link href="/vault" className="hover:text-[#D4AF37] hover:pl-1 transition-all">{t("theVault")}</Link></li>
-                    </ul>
-                </div>
-
-                {/* Wisdom Links */}
-                <div className="space-y-6">
-                    <h3 className="font-serif text-lg text-[#D4AF37]">{t("wisdom")}</h3>
-                    <ul className="space-y-3 text-sm text-[#D4AF37]/80">
-                        <li><Link href="/scroll" className="hover:text-[#D4AF37] hover:pl-1 transition-all">{t("theScroll")}</Link></li>
-                        <li><a href="#" className="hover:text-[#D4AF37] hover:pl-1 transition-all flex items-center gap-1">{t("zenBlog")} <ArrowUpRight className="w-3 h-3" /></a></li>
-                    </ul>
-                </div>
-
-                {/* Foundation Links */}
-                <div className="space-y-6">
-                    <h3 className="font-serif text-lg text-[#D4AF37]">{t("foundation")}</h3>
-                    <ul className="space-y-3 text-sm text-[#D4AF37]/80">
-                        <li><Link href="/terms" className="hover:text-[#D4AF37] hover:pl-1 transition-all">{t("terms")}</Link></li>
-                        <li><Link href="/privacy" className="hover:text-[#D4AF37] hover:pl-1 transition-all">{t("privacy")}</Link></li>
-                        <li><a href="#" className="hover:text-[#D4AF37] hover:pl-1 transition-all">{t("riskDisclosure")}</a></li>
-                    </ul>
-                </div>
-
-                {/* Community & Branding */}
-                <div className="space-y-6 flex flex-col items-start md:items-end">
-
-                    {/* Golden Seal */}
-                    <Link href="/" className="w-16 h-16 rounded-full border-2 border-[#D4AF37]/30 flex items-center justify-center relative group cursor-pointer hover:border-[#D4AF37]/60 transition-colors">
-                        <div className="absolute inset-0 rounded-full border border-[#D4AF37]/10 animate-spin-slow" />
-                        <span className="font-serif text-2xl text-[#D4AF37] group-hover:scale-110 transition-transform">金</span>
+        <footer className="w-full bg-black border-t border-white/5 pt-20 pb-10">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-12 mb-20">
+                    {/* Logo */}
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <div className="w-12 h-12 bg-primary flex items-center justify-center text-black font-bold text-2xl">
+                            金
+                        </div>
+                        <span className="text-2xl font-bold tracking-tighter text-white uppercase">Kintsugi</span>
                     </Link>
 
-                    {/* Social Icons */}
-                    <div className="flex gap-4">
-                        <SocialIcon href="https://x.com/Kintsugionsol" icon={<Twitter className="w-5 h-5" />} label="X (Twitter)" />
-                        <SocialIcon href="https://discord.com" icon={<Disc className="w-5 h-5" />} label="Discord" />
-                        <SocialIcon href="https://github.com/Start-With-A-Name/Kintsugi" icon={<Github className="w-5 h-5" />} label="GitHub" />
+                    {/* Links */}
+                    <div className="flex flex-wrap justify-center gap-10">
+                        <a href="https://x.com/Kintsugionton" target="_blank" className="text-white/40 hover:text-primary transition-colors font-bold uppercase tracking-widest text-xs flex items-center gap-1">
+                            {t('x')} <Twitter className="w-3 h-3" />
+                        </a>
                     </div>
                 </div>
-            </div>
 
-            {/* Transparency Report */}
-            <div className="max-w-xl mx-auto px-6 mt-16 mb-12">
-                <TransparencyReport />
-            </div>
-
-            {/* Bottom Bar: Global Status */}
-            <div className="max-w-7xl mx-auto px-6 pt-8 border-t border-[#D4AF37]/10 flex flex-col items-center gap-4 text-xs">
-
-                {/* Global Status Indicator */}
-                <div className="flex items-center gap-4 text-[#D4AF37]/70 font-mono tracking-wider bg-[#D4AF37]/5 px-4 py-2 rounded-full border border-[#D4AF37]/10">
-                    <span className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-                        {t("statusSensei")}
-                    </span>
-                    <span className="w-1 h-1 rounded-full bg-[#D4AF37]/30" />
-                    <span className="flex items-center gap-2">
-                        {t("statusSolana")}: <span className="text-[#D4AF37]">{t("statusHealthy")}</span>
-                    </span>
-                    <span className="w-1 h-1 rounded-full bg-[#D4AF37]/30" />
-                    <span className="flex items-center gap-2">
-                        {t("statusAudit")}: <span className="text-[#D4AF37]">{t("statusVerified")}</span>
-                    </span>
-                </div>
-
-                <div className="flex flex-col md:flex-row justify-between w-full items-center mt-4 text-[#D4AF37]/40">
-                    <p>{t("copyright")}</p>
-                    <p>{t("tagline")}</p>
+                <div className="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5 gap-6 text-[10px] font-bold uppercase tracking-[0.2em]">
+                    <p className="text-white/20">{t('copyright')}</p>
+                    <p className="text-primary">{t('status')}</p>
                 </div>
             </div>
         </footer>
-    );
-}
-
-function SocialIcon({ href, icon, label }: { href: string, icon: React.ReactNode, label: string }) {
-    return (
-        <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full border border-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#121212] transition-all duration-300"
-            title={label}
-        >
-            {icon}
-        </a>
     );
 }

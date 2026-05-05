@@ -4,7 +4,6 @@ import GoldenSeam from "@/components/GoldenSeam";
 import Navbar from "@/components/Navbar";
 import PageTransition from "@/components/PageTransition";
 import Footer from "@/components/Footer";
-import LaunchLock from "@/components/LaunchLock";
 import ProfileSignup from "@/components/ProfileSignup";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import { routing } from "@/i18n/routing";
@@ -38,11 +37,9 @@ export default async function LocaleLayout({
                 <Navbar />
 
                 <PageTransition>
-                    <LaunchLock>
-                        <LayoutWrapper>
-                            {children}
-                        </LayoutWrapper>
-                    </LaunchLock>
+                    <LayoutWrapper>
+                        {children}
+                    </LayoutWrapper>
                 </PageTransition>
 
                 <Footer />

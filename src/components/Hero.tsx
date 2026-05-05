@@ -1,103 +1,77 @@
 "use client";
 
-import { useWalletModal } from "@solana/wallet-adapter-react-ui";
-import { useWallet } from "@solana/wallet-adapter-react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BookOpen, Lock as LockIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
-interface HeroProps {
-    onJoinWaitlist: () => void;
-}
-
-export default function Hero({ onJoinWaitlist }: HeroProps) {
-    const { setVisible } = useWalletModal();
-    const { connected } = useWallet();
+export default function Hero() {
     const t = useTranslations("home");
 
-    const handleConnect = () => {
-        if (!connected) {
-            setVisible(true);
-        }
-    };
-
     return (
-        <section className="relative pt-32 pb-20 overflow-hidden w-full">
-            {/* Background Elements */}
-            <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-40">
-                <svg viewBox="0 0 800 800" className="w-full max-w-4xl h-full animate-pulse-slow">
-                    <defs>
-                        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feGaussianBlur stdDeviation="15" result="blur" />
-                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                        </filter>
-                    </defs>
-                    <path
-                        d="M400,100 L410,250 L380,350 L420,450 L390,600 L400,700"
-                        fill="none"
-                        stroke="#D4AF37"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        filter="url(#glow)"
-                        className="opacity-50"
-                    />
-                    <path
-                        d="M400,100 L410,250 L380,350 L420,450 L390,600 L400,700"
-                        fill="none"
-                        stroke="#D4AF37"
-                        strokeWidth="1"
-                        className="animate-draw-line"
-                    />
-                </svg>
+        <section className="relative min-h-[90vh] flex items-center justify-center pt-20 overflow-hidden w-full">
+            {/* Cinematic Background Elements */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] animate-pulse-slow" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[80px]" />
             </div>
 
-            <div className="container mx-auto px-4 relative z-10 text-center">
-                {/* The Main Title - FIXED & TIGHTENED */}
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.1]">
-                    <span className="text-stone-100">{t('heroTitle')} </span>
-                    {/* This span holds the Gold Text */}
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-yellow-300 to-amber-500 italic">
-                        {t('heroTitleAccent')}
-                    </span>
-                </h1>
+            <div className="container mx-auto px-6 relative z-10 text-center">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                >
+                    <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">
+                        <span className="block text-white">{t('heroTitle')}</span>
+                        <span className="block text-primary italic drop-shadow-[0_0_30px_rgba(255,176,0,0.5)]">
+                            {t('heroTitleAccent')}
+                        </span>
+                    </h1>
 
-                {/* The Subheadline - AUTHENTIC PHASE 1 TEXT */}
-                <p className="text-xl text-stone-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                    {t('heroSubtitle')}
-                </p>
+                    <p className="text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-12 leading-relaxed font-medium">
+                        {t('heroSubtitle')}
+                    </p>
 
-                {/* The Buttons */}
-                <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                    {/* Hard-Coded Connect Wallet Button */}
-                    <button
-                        onClick={handleConnect}
-                        className="px-8 py-3 bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(245,158,11,0.3)] flex items-center gap-2 cursor-pointer"
-                    >
-                        {/* Keep your wallet icon here if you have one */}
-                        <span>{t('ctaConnect')}</span>
-                    </button>
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+                        {/* Locked Connect Button */}
+                        <button
+                            disabled
+                            className="group relative px-10 py-5 border border-white/10 text-white/20 font-bold uppercase tracking-widest cursor-not-allowed flex items-center gap-3 overflow-hidden"
+                        >
+                            <LockIcon className="w-5 h-5 opacity-40" />
+                            <span className="relative z-10">{t('ctaConnect')}</span>
+                            <div className="absolute inset-0 bg-white/[0.02]" />
+                        </button>
 
-                    <button
-                        onClick={onJoinWaitlist}
-                        className="px-8 py-3 border border-stone-700 hover:border-amber-500/50 text-stone-300 hover:text-amber-100 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-2"
-                    >
-                        {t('ctaWaitlist')} <ArrowRight className="w-4 h-4" />
-                    </button>
-                </div>
+                        {/* Linked Manifesto Button */}
+                        <Link
+                            href="/manifesto"
+                            className="px-10 py-5 bg-white/5 border border-white/10 text-white/80 hover:text-primary hover:border-primary/50 transition-all duration-300 uppercase tracking-widest font-bold flex items-center gap-3 group"
+                        >
+                            <BookOpen className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                            {t('ctaManifesto')}
+                        </Link>
+                    </div>
 
-                {/* Orynth Badge */}
-                <div className="mt-10 flex justify-center">
-                    <a href="https://orynth.dev/projects/kintsugi-protocol" target="_blank" rel="noopener">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src="https://orynth.dev/api/badge/kintsugi-protocol?theme=light&style=default"
-                            alt="Featured on Orynth"
-                            width={260}
-                            height={80}
-                            className="opacity-80 hover:opacity-100 transition-opacity duration-300"
-                        />
-                    </a>
-                </div>
+                    <div className="mt-16 flex flex-col items-center gap-4">
+                        <Link 
+                            href="/manifesto" 
+                            className="group flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.4em] text-white/30 hover:text-primary transition-all duration-500"
+                        >
+                            <span className="w-12 h-[1px] bg-white/5 group-hover:bg-primary/40 group-hover:w-16 transition-all" />
+                            The Manifesto
+                            <span className="w-12 h-[1px] bg-white/5 group-hover:bg-primary/40 group-hover:w-16 transition-all" />
+                        </Link>
+                    </div>
+                </motion.div>
+            </div>
+
+            {/* Scroll Indicator */}
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-30">
+                <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-primary to-transparent" />
             </div>
         </section>
     );
 }
+

@@ -2,119 +2,127 @@
 @plugin "tailwindcss-animate";
 
 :root {
-  /* Kintsugi Minimalist Palette (Dark) */
-  --background: #121212;
-  /* Dark Charcoal */
-  --foreground: #f3f3f3;
-  /* Off-white */
+  /* Kintsugi Dark Zen Palette */
+  --background: #000000;
+  --foreground: #ffffff;
 
-  --card: #1a1a1a;
-  --card-foreground: #f3f3f3;
+  --card: #0a0a0a;
+  --card-foreground: #ffffff;
 
-  --popover: #1a1a1a;
-  --popover-foreground: #f3f3f3;
+  --popover: #0a0a0a;
+  --popover-foreground: #ffffff;
 
-  --primary: #D4AF37;
-  /* Muted Gold */
-  --primary-foreground: #121212;
+  --primary: #FFB000; /* Molten Gold */
+  --primary-foreground: #000000;
 
-  --secondary: #1E1E1E;
-  /* Slightly lighter charcoal */
-  --secondary-foreground: #D4AF37;
+  --secondary: #111111; /* Charcoal */
+  --secondary-foreground: #FFB000;
 
-  --muted: #2A2A2A;
+  --muted: #1a1a1a;
   --muted-foreground: #888888;
 
-  --accent: #D4AF37;
-  --accent-foreground: #121212;
+  --accent: #FFB000;
+  --accent-foreground: #000000;
+
+  --ton-blue: #0088CC;
 
   --destructive: #9b2c2c;
   --destructive-foreground: #ffffff;
 
-  --border: #D4AF37;
-  /* Gold border */
-  --input: #2A2A2A;
-  --ring: #D4AF37;
+  --border: rgba(255, 176, 0, 0.2); /* Muted Gold border */
+  --input: #111111;
+  --ring: #FFB000;
 
-  --radius: 0.125rem;
+  --radius: 0px; /* Monolithic feel */
 
-  /* Chart colors (kept if needed) */
-  --chart-1: #D4AF37;
-  --chart-2: #8b5a2b;
-  --chart-3: #9b2c2c;
-  --chart-4: #2A2A2A;
-  --chart-5: #121212;
+  --font-inter: "Inter", sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
-
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-
+  --color-ton: var(--ton-blue);
   --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --radius-sm: calc(var(--radius) - 2px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
   --font-sans: var(--font-inter);
-  --font-serif: var(--font-shippori);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-sans);
   overflow-x: hidden;
-  /* Subtle noise texture for "stone/paper" feel */
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  position: relative;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-serif), serif;
+/* Anti-gravity Vortex Background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 50% 50%, #111111 0%, transparent 70%),
+    radial-gradient(circle at 80% 20%, #080808 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, #080808 0%, transparent 50%);
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* English locale — lighter typographic rhythm */
-[data-locale="en"] body,
-[data-locale="en"] p,
-[data-locale="en"] span,
-[data-locale="en"] li,
-[data-locale="en"] a {
-  letter-spacing: 0.025em;
-  line-height: 1.75;
+/* Subtle Noise Texture */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
-[data-locale="en"] h1,
-[data-locale="en"] h2,
-[data-locale="en"] h3,
-[data-locale="en"] h4 {
-  letter-spacing: 0.01em;
-  line-height: 1.3;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+[data-locale="en"] body {
+  letter-spacing: -0.01em;
+  line-height: 1.6;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+@keyframes draw-line {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.animate-draw-line {
+  stroke-dasharray: 1000;
+  animation: draw-line 4s linear forwards;
 }

@@ -3,11 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Lock } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import WalletConnectBtn from "@/components/WalletConnectBtn";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { IS_LIVE, PUBLIC_ROUTES } from "@/config/launch";
 import { useTranslations } from "next-intl";
 
 export default function Navbar() {
@@ -15,102 +14,73 @@ export default function Navbar() {
     const pathname = usePathname();
     const t = useTranslations("nav");
 
-    // Hide on Crucible page
+    // Hide on special pages
     const routeWithoutLocale = pathname.replace(/^\/(ja|en)/, "") || "/";
-    if (routeWithoutLocale === "/crucible") return null;
+    if (routeWithoutLocale === "/crucible" || routeWithoutLocale === "/manifesto") return null;
 
     const navLinks = [
         { name: t("home"), href: "/" },
-        { name: t("crucible"), href: "/crucible" },
-        { name: t("whitepaper"), href: "/scroll" },
-        { name: t("scanner"), href: "/scanner" },
-        { name: t("hall"), href: "/hall" },
-        { name: t("vote"), href: "/vote" },
-        { name: t("vault"), href: "/vault" },
+        { name: t("manifesto"), href: "#manifesto" },
     ];
 
     const isLinkActive = (href: string) => {
-        if (href.startsWith("/#")) return false;
+        if (href.startsWith("#")) return false;
         const pathWithoutLocale = pathname.replace(/^\/(ja|en)/, '') || '/';
         return pathWithoutLocale === href;
     };
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-            {/* Glassmorphic Bar */}
-            <div className="absolute inset-0 bg-background/60 backdrop-blur-md border-b border-primary/10 pointer-events-none" />
+        <header className="fixed top-0 left-0 right-0 z-50">
+            {/* Minimalist Glassmorphic Bar */}
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-xl border-b border-white/5 pointer-events-none" />
 
             <div className="relative max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 
                 {/* Logo Area */}
-                <Link href="/" className="flex items-center gap-2 group z-50">
-                    <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-serif text-2xl font-bold shadow-[0_0_15px_-5px_var(--primary)] group-hover:scale-105 transition-transform">
+                <Link href="/" className="flex items-center gap-3 group z-50">
+                    <div className="w-10 h-10 bg-primary flex items-center justify-center text-black font-bold text-xl shadow-[0_0_20px_rgba(255,176,0,0.3)]">
                         金
                     </div>
-                    <span className="font-serif text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
-                        Kintsugi
-                    </span>
+                    <div className="flex flex-col leading-none">
+                        <span className="text-xl font-bold tracking-tight text-white group-hover:text-primary transition-colors">
+                            KINTSUGI
+                        </span>
+                        <span className="text-[10px] tracking-[0.2em] text-primary font-bold">
+                            TON PROTOCOL
+                        </span>
+                    </div>
                 </Link>
 
                 {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center gap-8">
-                    {navLinks.map((link) => {
-                        const active = isLinkActive(link.href);
-                        const restricted = !IS_LIVE && !PUBLIC_ROUTES.includes(link.href);
-                        return (
-                            <div key={link.href} className="relative group">
-                                <Link
-                                    href={link.href}
-                                    className={`font-serif text-sm tracking-wide transition-all duration-300 relative py-2 flex items-center gap-1.5 ${active
-                                        ? "text-primary font-medium drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]"
-                                        : restricted
-                                            ? "text-muted-foreground/50 cursor-not-allowed"
-                                            : "text-muted-foreground hover:text-foreground"
-                                        }`}
-                                >
-                                    <motion.span
-                                        whileHover={restricted ? { x: [0, -2, 2, -2, 2, 0], transition: { duration: 0.4 } } : {}}
-                                        className="flex items-center gap-1.5"
-                                    >
-                                        {link.name}
-                                        {restricted && (
-                                            <Lock className="w-3 h-3 text-primary/50" />
-                                        )}
-                                    </motion.span>
-                                    {/* Active State: Golden Underline */}
-                                    <span className={`absolute bottom-0 left-0 w-full h-[1px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-right group-hover:origin-left ${active ? "scale-x-100" : ""}`} />
-                                </Link>
-
-                                {/* Tooltip for Restricted Links */}
-                                {restricted && (
-                                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max max-w-[200px] bg-[#121212]/90 backdrop-blur-md border border-[#D4AF37]/20 text-xs text-[#D4AF37] p-2 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-[60] text-center">
-                                        {t("lockedTooltip")}
-                                    </div>
-                                )}
-                            </div>
-                        );
-                    })}
+                <nav className="hidden md:flex items-center gap-10">
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className="text-sm font-medium tracking-widest uppercase text-white/60 hover:text-primary transition-colors duration-300"
+                        >
+                            {link.name}
+                        </Link>
+                    ))}
                 </nav>
 
-                {/* Right Area (Language, Wallet & Mobile Toggle) */}
+                {/* Right Area */}
                 <div className="flex items-center gap-6 z-50">
                     <LanguageSwitcher />
-                    <div className="hidden md:block scale-90">
-                        <div className="relative">
-                            <div className="absolute inset-0 bg-primary/20 rounded-lg blur-lg animate-pulse" />
-                            <WalletConnectBtn />
-                        </div>
+                    <div className="hidden md:block">
+                        <WalletConnectBtn />
                     </div>
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="md:hidden text-primary hover:text-primary/80 transition-colors p-2"
+                        className="md:hidden text-white hover:text-primary transition-colors p-2"
                         onClick={() => setIsOpen(!isOpen)}
                     >
                         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                     </button>
                 </div>
             </div>
+
 
             {/* Mobile Navigation Menu - Shoji Overlay */}
             <AnimatePresence>
@@ -137,7 +107,6 @@ export default function Navbar() {
                         <nav className="flex flex-col space-y-8 text-center relative z-10">
                             {navLinks.map((link, i) => {
                                 const active = isLinkActive(link.href);
-                                const restricted = !IS_LIVE && !PUBLIC_ROUTES.includes(link.href);
                                 return (
                                     <motion.div
                                         key={link.href}
@@ -150,15 +119,10 @@ export default function Navbar() {
                                             onClick={() => setIsOpen(false)}
                                             className={`font-serif text-3xl tracking-widest uppercase transition-all duration-300 hover:text-primary relative inline-flex items-center gap-3 ${active
                                                 ? "text-primary drop-shadow-[0_0_10px_rgba(212,175,55,0.6)]"
-                                                : restricted
-                                                    ? "text-muted-foreground/40"
-                                                    : "text-muted-foreground"
+                                                : "text-muted-foreground"
                                                 }`}
                                         >
                                             {link.name}
-                                            {restricted && (
-                                                <Lock className="w-4 h-4 text-primary/40" />
-                                            )}
                                             {/* Mobile Active State Line */}
                                             {active && (
                                                 <motion.div
